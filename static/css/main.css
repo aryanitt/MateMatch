@@ -1,0 +1,464 @@
+/* ========================================
+   Roommate Dekho - Enterprise Design System
+   Theme: Production-Grade, Corporate Blue, Investor-Ready
+   ======================================== */
+
+/* === CSS Variables & Design Tokens === */
+:root {
+  /* Brand Colors - Standard Corporate Palette */
+  --primary: #0056D2;
+  /* LinkedIn/Facebook Blue - High Trust */
+  --primary-hover: #00419E;
+  --primary-light: #EBF4FF;
+
+  --secondary: #5E6C84;
+  /* Slate Grey - Secondary Text/Icons */
+  --secondary-bg: #F4F5F7;
+  /* Light Grey Background */
+
+  /* Standard Status Colors */
+  --success: #36B37E;
+  /* Jira Green */
+  --warning: #FFAB00;
+  /* Jira Yellow */
+  --danger: #FF5630;
+  /* Jira Red */
+  --info: #0065FF;
+  /* Info Blue */
+
+  /* Backgrounds */
+  --bg-body: #FFFFFF;
+  /* Clean White Body */
+  --bg-surface: #FFFFFF;
+  /* White Cards */
+  --bg-highlight: #F4F5F7;
+  /* Muted Section Background */
+
+  /* Text Colors */
+  --text-heading: #172B4D;
+  /* Dark Navy - Headings */
+  --text-body: #42526E;
+  /* Slate Grey - Body Text */
+  --text-muted: #6B778C;
+  /* Muted Text */
+  --text-on-primary: #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-color: #DFE1E6;
+  /* Light Divider */
+  --border-focus: #4C9AFF;
+  /* Focus Ring */
+
+  /* Spacing Scale (8px Grid) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Typography - System Fonts for Stability */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* === Global Reset & Base Styles === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  color: var(--text-body);
+  line-height: 1.5;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-heading);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
+/* === Layout Components === */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  /* Standard Bootstrap width */
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-bg {
+  background-color: var(--bg-highlight);
+}
+
+/* === Navbar === */
+.navbar {
+  height: 64px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nav-link {
+  color: var(--text-heading);
+  font-weight: 500;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.nav-link:hover {
+  background-color: var(--bg-highlight);
+  text-decoration: none;
+}
+
+/* === Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 4px;
+  /* Slight rounding for professional look */
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  color: var(--text-heading);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-highlight);
+  border-color: var(--secondary);
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1.0625rem;
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* === Cards === */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  /* Standard radius */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  /* Minimal shadow */
+  transition: box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-highlight);
+}
+
+.card-body {
+  padding: var(--space-lg);
+}
+
+.card-footer {
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--border-color);
+  background-color: #FAFBFC;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+}
+
+/* === Forms === */
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+}
+
+.form-input,
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-heading);
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(0, 86, 210, 0.15);
+}
+
+.form-hint {
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* === Grid System === */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* === Workflow / Progress === */
+.progress-bar-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.progress-bar-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--border-color);
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+.progress-step {
+  position: relative;
+  z-index: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-highlight);
+  border: 2px solid var(--border-color);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+.progress-step.active .step-indicator,
+.progress-step.complete .step-indicator {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.progress-step.active .step-label {
+  color: var(--primary);
+}
+
+/* === Utilities === */
+.text-center {
+  text-align: center;
+}
+
+.mb-sm {
+  margin-bottom: var(--space-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-gap-md {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 4px;
+}
+
+.badge-primary {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.badge-success {
+  background-color: #E3FCEF;
+  color: #006644;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .navbar {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}

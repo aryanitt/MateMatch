@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Profile | Roommate Dekho</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+</head>
+
+<body style="background-color: var(--bg-highlight);">
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-brand">🏠 Roommate Dekho</a>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 800px; padding-top: 40px; padding-bottom: 80px;">
+
+    <div class="text-center mb-lg">
+      <h2>Create Your Profile</h2>
+      <p class="text-muted">Complete the following steps to find your ideal match.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+
+        <!-- Progress Header -->
+        <div class="progress-bar-container">
+          <div class="progress-bar-line"></div>
+          <!-- Steps -->
+          <div class="progress-step active" data-step="1">
+            <div class="step-indicator">1</div>
+            <div class="step-label">Basic</div>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-indicator">2</div>
+            <div class="step-label">Lifestyle</div>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-indicator">3</div>
+            <div class="step-label">Details</div>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-indicator">4</div>
+            <div class="step-label">Interests</div>
+          </div>
+          <div class="progress-step" data-step="5">
+            <div class="step-indicator">5</div>
+            <div class="step-label">Location</div>
+          </div>
+        </div>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data" class="multi-step-form">
+
+          <!-- Alert for Validation -->
+          <div id="form-alert"
+            style="display: none; padding: 12px; background: #FFFAE6; border: 1px solid #FFAB00; border-radius: 4px; color: #172B4D; margin-bottom: 24px;">
+            ⚠️ Please fill in all required fields to proceed.
+          </div>
+
+          <!-- Step 1: Basics -->
+          <div class="form-step active" data-step="1">
+            <h4 class="mb-md">Basic Information</h4>
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="Name" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input type="tel" name="mobile" class="form-input" placeholder="10-digit mobile number"
+                pattern="[0-9]{10}" required>
+              <div class="form-hint">Used for verification and contact by matches.</div>
+            </div>
+
+            <div class="text-center pt-md border-top mt-lg">
+              <button type="button" class="btn btn-primary btn-next">Next: Lifestyle &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Lifestyle -->
+          <div class="form-step" style="display: none;" data-step="2">
+            <h4 class="mb-md">Lifestyle Preferences</h4>
+            <div class="form-group">
+              <label class="form-label">Dietary Preference</label>
+              <select name="Is_Vegetarian" class="form-select" required>
+                <option value="">Select option...</option>
+                <option value="True">Vegetarian</option>
+                <option value="False">Non-Vegetarian</option>
+              </select>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 32px;">
+              <button type="button" class="btn btn-secondary btn-prev">&larr; Back</button>
+              <button type="button" class="btn btn-primary btn-next">Next: Details &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Budget -->
+          <div class="form-step" style="display: none;" data-step="3">
+            <h4 class="mb-md">Financial Details</h4>
+            <div class="form-group">
+              <label class="form-label">Monthly Rent Budget (₹)</label>
+              <input type="number" name="Budget" class="form-input" placeholder="e.g. 15000" required>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 32px;">
+              <button type="button" class="btn btn-secondary btn-prev">&larr; Back</button>
+              <button type="button" class="btn btn-primary btn-next">Next: Interests &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Interests -->
+          <div class="form-step" style="display: none;" data-step="4">
+            <h4 class="mb-md">Interests & Hobbies</h4>
+            <div class="form-group">
+              <label class="form-label">Add Tags (Press Enter)</label>
+              <div id="tag-container"
+                style="border: 2px solid var(--border-color); border-radius: 4px; padding: 8px; display: flex; flex-wrap: wrap; gap: 8px; min-height: 48px; background: white;">
+                <input type="text" id="hobbies-input"
+                  style="border: none; outline: none; flex-grow: 1; min-width: 120px; font-size: 1rem;"
+                  placeholder="e.g. Reading, Music...">
+              </div>
+              <input type="hidden" id="Hobbies" name="Hobbies" required>
+              <div class="form-hint">Add at least 3 hobbies to improve matching accuracy.</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 32px;">
+              <button type="button" class="btn btn-secondary btn-prev">&larr; Back</button>
+              <button type="button" class="btn btn-primary btn-next">Next: Location &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 5: Location -->
+          <div class="form-step" style="display: none;" data-step="5">
+            <h4 class="mb-md">Preferred Location</h4>
+            <div class="form-group">
+              <label class="form-label">Search Landmark</label>
+              <input type="text" id="location-search" class="form-input mb-sm" placeholder="Search area...">
+              <div id="map"
+                style="height: 300px; width: 100%; background: #eee; border: 1px solid var(--border-color); border-radius: 4px;">
+              </div>
+              <input type="hidden" id="latitude" name="latitude" required>
+              <input type="hidden" id="longitude" name="longitude" required>
+              <div class="form-hint">Click on map to pin exact location.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Profile Photo</label>
+              <input type="file" name="image" class="form-input" accept="image/*">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 32px;">
+              <button type="button" class="btn btn-secondary btn-prev">&larr; Back</button>
+              <button type="submit" class="btn btn-primary btn-lg">Submit Profile &rarr;</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="{{ url_for('static', path='js/main.js') }}"></script>
+</body>
+
+</html>

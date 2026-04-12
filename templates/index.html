@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roommate Dekho | Compatible Roommate Matching Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+</head>
+
+<body>
+
+    <!-- Professional Navbar -->
+    <nav class="navbar">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="/" class="navbar-brand">
+                <span style="font-size: 1.5rem;">🏠</span> Roommate Dekho
+            </a>
+            <div style="display: flex; gap: 16px;">
+                <a href="#how-it-works" class="nav-link">How it Works</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="/predict" class="btn btn-primary">Find a Roommate</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="section" style="padding: 80px 0; background: linear-gradient(180deg, #FFFFFF 0%, #F4F5F7 100%);">
+        <div class="container text-center" style="max-width: 800px;">
+            <span class="badge badge-primary" style="margin-bottom: 16px;">AI-Powered Matching Engine</span>
+            <h1 style="margin-bottom: 24px;">Find a Compatible Roommate,<br>Data-Backed & Verified.</h1>
+            <p style="font-size: 1.125rem; color: var(--text-body); margin-bottom: 32px;">
+                Stop relying on random Facebook groups. Our platform uses lifestyle data points, budget alignment, and
+                location intelligence to find your ideal living partner.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 16px;">
+                <a href="/predict" class="btn btn-primary btn-lg">Start Matching Algorithm</a>
+                <a href="#demo" class="btn btn-secondary btn-lg">View Demo</a>
+            </div>
+            <p style="margin-top: 24px; font-size: 0.875rem; color: var(--text-muted);">
+                Trusted by 10,000+ users • Identity Verified • Secure Data
+            </p>
+        </div>
+    </header>
+
+    <!-- Features Grid -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 48px;">
+                <h5>Platform Capabilities</h5>
+                <h2>Why Choose Roommate Dekho?</h2>
+            </div>
+
+            <div class="grid grid-cols-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="font-size: 2rem; margin-bottom: 16px;">🎯</div>
+                        <h3>Algorithmic Matching</h3>
+                        <p style="color: var(--text-muted);">
+                            We analyze sleep schedules, cleanliness habits, and social preferences to calculate a
+                            compatibility score for every potential match.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div style="font-size: 2rem; margin-bottom: 16px;">📍</div>
+                        <h3>Hyper-Local Search</h3>
+                        <p style="color: var(--text-muted);">
+                            Integrated Google Maps API allows you to find roommates within walking distance of your
+                            office or university.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div style="font-size: 2rem; margin-bottom: 16px;">🛡️</div>
+                        <h3>Verified Identities</h3>
+                        <p style="color: var(--text-muted);">
+                            Every profile undergoes phone number verification to ensure a safe and trustworthy community
+                            ecosystem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works (Process) -->
+    <section id="how-it-works" class="section section-bg">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 48px;">
+                <h2>How It Works</h2>
+            </div>
+            <div class="grid grid-cols-3 text-center">
+                <div>
+                    <div
+                        style="width: 48px; height: 48px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 16px;">
+                        1</div>
+                    <h4>Create Profile</h4>
+                    <p class="text-muted">Input your lifestyle preferences, budget, and location requirements.</p>
+                </div>
+                <div>
+                    <div
+                        style="width: 48px; height: 48px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 16px;">
+                        2</div>
+                    <h4>View Matches</h4>
+                    <p class="text-muted">Our ML model ranks candidates by compatibility percentage.</p>
+                </div>
+                <div>
+                    <div
+                        style="width: 48px; height: 48px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 16px;">
+                        3</div>
+                    <h4>Connect safely</h4>
+                    <p class="text-muted">Chat with your top matches and finalize your living arrangement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Reviews -->
+    <section id="reviews" class="section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 48px;">
+                <h2>Trusted by Students & Professionals</h2>
+                <p class="text-muted">See what our community has to say about their matching experience.</p>
+            </div>
+
+            <div class="grid grid-cols-3">
+
+                <!-- Review 1 -->
+                <div class="card">
+                    <div class="card-body">
+                        <div style="color: #FFAB00; margin-bottom: 12px; font-size: 1.25rem;">★★★★★</div>
+                        <p style="font-style: italic; margin-bottom: 24px;">"I was struggling to find a flatmate who
+                            understood my night-shift schedule. Roommate Dekho matched me with another developer
+                            instantly."</p>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div
+                                style="width: 40px; height: 40px; background: #e0e7ff; color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                R</div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Rahul Sharma</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Software Engineer, Bangalore
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="card">
+                    <div class="card-body">
+                        <div style="color: #FFAB00; margin-bottom: 12px; font-size: 1.25rem;">★★★★★</div>
+                        <p style="font-style: italic; margin-bottom: 24px;">"The verified profiles feature gave me peace
+                            of mind. I found a safe place near my college within 2 days. Highly recommended!"</p>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div
+                                style="width: 40px; height: 40px; background: #fce7f3; color: #ec4899; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                P</div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Priya Patel</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Student, Mumbai</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="card">
+                    <div class="card-body">
+                        <div style="color: #FFAB00; margin-bottom: 12px; font-size: 1.25rem;">★★★★★</div>
+                        <p style="font-style: italic; margin-bottom: 24px;">"Simple, effective, and no brokerage
+                            nonsense. The budget filter is accurate and saved me a lot of time visiting random flats."
+                        </p>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div
+                                style="width: 40px; height: 40px; background: #dcfce7; color: #166534; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                A</div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Amit Verma</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Analyst, Delhi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer style="padding: 48px 0; background-color: var(--bg-surface); border-top: 1px solid var(--border-color);">
+        <div class="container text-center">
+            <h4 style="color: var(--primary); margin-bottom: 8px;">Roommate Dekho</h4>
+            <p class="text-muted">Building the future of shared living.</p>
+            <div style="margin-top: 24px;">
+                <a href="#" style="color: var(--text-muted); margin: 0 12px; font-size: 0.875rem;">Privacy Policy</a>
+                <a href="#" style="color: var(--text-muted); margin: 0 12px; font-size: 0.875rem;">Terms of Service</a>
+                <a href="#" style="color: var(--text-muted); margin: 0 12px; font-size: 0.875rem;">Contact Support</a>
+            </div>
+            <p style="margin-top: 32px; font-size: 0.75rem; color: #999;">© 2024 Roommate Dekho Inc. All rights
+                reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match Results | Roommate Dekho</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+</head>
+
+<body style="background-color: var(--bg-highlight);">
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-brand">🏠 Roommate Dekho</a>
+      <a href="/predict" class="btn btn-sm btn-secondary">Edit Profile</a>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top: 32px; padding-bottom: 64px;">
+
+    <div class="flex-between mb-lg">
+      <div>
+        <h2>Top Matches</h2>
+        <p class="text-muted">Based on 25+ compatibility data points</p>
+      </div>
+    </div>
+
+    <div class="grid" style="display: grid; grid-template-columns: 280px 1fr; gap: 32px;">
+
+      <!-- Filters Sidebar -->
+      <aside>
+        <div class="card">
+          <div class="card-header">
+            <h5 style="margin: 0;">Filters</h5>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Sort By</label>
+              <select id="sort-select" class="form-select">
+                <option value="best-match">Best Match</option>
+                <option value="budget">Budget (Low to High)</option>
+                <option value="nearest">Distance (Nearest)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Max Budget</label>
+              <input type="range" id="budget-filter" min="5000" max="50000" step="1000" style="width: 100%;">
+              <div class="flex-between text-muted" style="font-size: 0.8rem;">
+                <span>₹5k</span>
+                <span>₹50k+</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Distance</label>
+              <input type="range" id="distance-filter" min="1" max="50" value="10" style="width: 100%;">
+              <div class="flex-between text-muted" style="font-size: 0.8rem;">
+                <span>1km</span>
+                <span>50km</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Results List -->
+      <div class="results-list" style="display: grid; gap: 16px;">
+        {% if results %}
+        {% for match in results %}
+        <div class="card match-card" data-budget="{{ match.Budget }}" data-distance="{{ match.Distance }}"
+          data-compatibility="{{ match.Matching.replace('%', '') }}">
+          <div style="display: flex; padding: 24px;">
+            <!-- Avatar -->
+            <div style="flex-shrink: 0; margin-right: 24px;">
+              <div
+                style="width: 80px; height: 80px; background: #eee; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #999;">
+                {% if match.image %}
+                <img src="data:image/jpeg;base64,{{ match.image }}"
+                  style="width: 100%; height: 100%; object-fit: cover;">
+                {% else %}
+                {{ match.Name[0].upper() }}
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div style="flex-grow: 1;">
+              <div class="flex-between">
+                <h3 style="margin: 0; font-size: 1.25rem;">{{ match.Name }}</h3>
+                <span class="badge badge-success">Verified</span>
+              </div>
+              <div class="text-muted" style="font-size: 0.9rem; margin-bottom: 12px;">
+                📍 {{ match.location[:60] }}... • {{ match.Distance|round(1) }} km away
+              </div>
+
+              <div style="display: flex; gap: 24px; margin-bottom: 16px;">
+                <div>
+                  <div
+                    style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">
+                    Match</div>
+                  <div style="color: var(--success); font-weight: 700; font-size: 1.1rem;">{{ match.Matching }}</div>
+                </div>
+                <div>
+                  <div
+                    style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">
+                    Budget</div>
+                  <div style="font-weight: 600; font-size: 1.1rem;">₹{{ match.Budget }}</div>
+                </div>
+                <div>
+                  <div
+                    style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">
+                    Diet</div>
+                  <div style="font-weight: 600; font-size: 1.1rem;">{{ match.Is_Vegetarian }}</div>
+                </div>
+                <div>
+                  <div
+                    style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">
+                    Phone</div>
+                  <div style="font-weight: 600; font-size: 1.1rem;">📞 {{ match.mobile }}</div>
+                </div>
+              </div>
+
+              <div>
+                <div
+                  style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 6px;">
+                  Interests</div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  {% if match.Hobbies %}
+                  {% for hobby in match.Hobbies.split(',')[:4] %}
+                  <span
+                    style="background: var(--bg-highlight); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; color: var(--text-body);">{{
+                    hobby.strip() }}</span>
+                  {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div
+              style="display: flex; flex-direction: column; justify-content: center; gap: 8px; margin-left: 24px; padding-left: 24px; border-left: 1px solid var(--border-color);">
+              <button class="btn btn-primary btn-sm" style="width: 120px;">View Details</button>
+              <button class="btn btn-secondary btn-sm" style="width: 120px;">Shortlist</button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="card text-center" style="padding: 40px;">
+          <h3>No matches found</h3>
+          <p>Try adjusting your search criteria.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', path='js/main.js') }}"></script>
+</body>
+
+</html>
