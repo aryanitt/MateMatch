@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "application.py",
+            "use": "@vercel/python",
+            "config": {
+                "excludeFiles": [
+                    "images/**",
+                    "Model_imaegs/**",
+                    ".git/**",
+                    "venv/**",
+                    "__pycache__/**",
+                    "*.md",
+                    "test_*.py",
+                    "example.py",
+                    "DEPLOYMENT.md",
+                    "README.md"
+                ]
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "application.py"
+        }
+    ]
+}
