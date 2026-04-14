@@ -1,0 +1,9 @@
+flask
+geopy
+pymongo
+certifi
+numpy
+fastapi
+uvicorn
+python-multipart
+jinja2
